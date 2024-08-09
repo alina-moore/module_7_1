@@ -13,11 +13,13 @@ class Shop:
     __file_name = 'products.txt'
 
     def get_products(self):
-        try:
-            with open(Shop.__file_name, 'r') as file:
-                products = [line.strip() for line in file if line.strip()]
-        except FileNotFoundError:
-            products = []
+        file = open(Shop.__file_name, 'r')
+        products = []
+        for x in file:
+            x = x.strip()
+            if x:
+                products.append(x)
+        file.close()
         return products
 
     def add(self, *products):
